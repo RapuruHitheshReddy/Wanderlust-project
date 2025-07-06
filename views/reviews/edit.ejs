@@ -1,0 +1,37 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container py-5">
+  <h2 class="mb-4">Edit Your Review for <%= listing.title %></h2>
+  <form
+    action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=PUT"
+    method="POST"
+    class="needs-validation"
+    novalidate
+  >
+    <div class="mb-3">
+      <label for="rating" class="form-label">Rating (1-5)</label>
+      <input
+        type="range"
+        min="1"
+        max="5"
+        id="rating"
+        name="review[rating]"
+        value="<%= review.rating %>"
+        class="form-range"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="comment" class="form-label">Comment</label>
+      <textarea
+        name="review[comment]"
+        id="comment"
+        rows="4"
+        class="form-control"
+        required
+      ><%= review.comment %></textarea>
+      <div class="invalid-feedback">Please enter your comment.</div>
+    </div>
+    <button class="btn btn-primary shadow">Update Review</button>
+  </form>
+</div>
